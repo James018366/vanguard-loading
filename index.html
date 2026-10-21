@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clone Wars Vanguard</title>
+<link rel="icon" href="assets/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="space"></canvas>
+<div id="vignette"></div>
+<div id="scan"></div>
+
+<!-- bandeau HoloNet -->
+<div id="ticker">
+	<div class="ticker-label">HOLONET</div>
+	<div class="ticker-track"><div id="ticker-text"></div></div>
+</div>
+
+<!-- coins HUD -->
+<div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+
+<div id="hud-left" class="mono">
+	<div>CANAL SÉCURISÉ · <span class="amber">501-ALPHA</span></div>
+	<div id="clock">00:00:00</div>
+</div>
+
+<!-- logo -->
+<div id="logo-wrap">
+	<div class="ring r1"></div>
+	<div class="ring r2"></div>
+	<div class="ring r3"></div>
+	<img id="logo" src="assets/logo.png" alt="">
+</div>
+
+<!-- panneau d'infos -->
+<div id="panel">
+	<div class="code mono" id="code">C L O N E · W A R S · V A N G U A R D</div>
+	<h1 id="title">CLONE WARS</h1>
+	<div id="sub">VANGUARD</div>
+	<div id="tagline"></div>
+	<div class="sep"></div>
+
+	<div class="rows">
+		<div class="row"><span class="k">SERVEUR</span><span class="v" id="srv">—</span></div>
+		<div class="row"><span class="k">THÉÂTRE D'OPÉRATIONS</span><span class="v" id="map">—</span></div>
+		<div class="row"><span class="k">MODE</span><span class="v" id="mode">—</span></div>
+		<div class="row"><span class="k">IDENTIFIANT</span><span class="v mono" id="sid">—</span></div>
+	</div>
+
+	<div class="sep"></div>
+
+	<div id="transmission">
+		<div class="tx-head"><span class="dot"></span>TRANSMISSION ENTRANTE</div>
+		<div id="tip"></div>
+	</div>
+</div>
+
+<!-- chargement -->
+<div id="loader">
+	<div class="loader-top">
+		<span id="status">CONNEXION AU RÉSEAU TACTIQUE</span>
+		<span id="percent">0%</span>
+	</div>
+	<div id="bar"></div>
+	<div class="loader-bottom mono">
+		<span id="file">&nbsp;</span>
+		<span id="files"></span>
+	</div>
+</div>
+
+<div id="discord" class="mono"></div>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
