@@ -172,8 +172,14 @@ html, body {
 #files { position: absolute; right: 0; top: 0; }
 
 #discord {
-	position: absolute; right: 44px; top: 70px; font-size: 13px; letter-spacing: 2px; color: rgba(220, 228, 240, 0.55);
+	position: absolute; right: 44px; top: 64px; display: none; padding: 10px 16px 10px 14px; text-decoration: none;
+	border: 1px solid rgba(88, 101, 242, 0.75); border-left: 3px solid #5865f2; background: rgba(12, 16, 34, 0.72);
+	-webkit-clip-path: polygon(0 0, 100% 0, 100% 70%, calc(100% - 10px) 100%, 0 100%);
+	clip-path: polygon(0 0, 100% 0, 100% 70%, calc(100% - 10px) 100%, 0 100%);
+	opacity: 0; -webkit-animation: fadeIn 1s ease 1.2s forwards; animation: fadeIn 1s ease 1.2s forwards;
 }
+#discord .d-label { display: block; font-size: 11px; letter-spacing: 3px; color: #8f98ff; }
+#discord .d-link { display: block; margin-top: 3px; font-size: 17px; letter-spacing: 1px; color: #fff; }
 
 /* ---------- animations ---------- */
 @-webkit-keyframes fadeIn { to { opacity: 1; } }
@@ -197,7 +203,9 @@ html, body {
 	#panel { left: 16px; right: 16px; width: auto; top: auto; bottom: 150px; margin: 0; padding: 18px; }
 	#title { font-size: 42px; line-height: 42px; }
 	#sub { font-size: 20px; letter-spacing: 9px; }
-	.rows, #hud-left, #discord, .code, #file, .rows + .sep { display: none; }
+	.rows, #hud-left, .code, #file, .rows + .sep { display: none; }
+	#discord { right: 16px; left: 16px; top: 46px; text-align: center; }
+	#logo-wrap { top: 122px; }
 	#panel { bottom: 140px; }
 	#loader { left: 16px; right: 16px; bottom: 40px; }
 	#percent { font-size: 28px; top: -6px; }
@@ -273,7 +281,7 @@ html, body {
 	</div>
 </div>
 
-<div id="discord" class="mono"></div>
+<a id="discord" class="mono" target="_blank" rel="noopener"><span class="d-label">REJOINS NOTRE DISCORD</span><span class="d-link" id="discord-link"></span></a>
 
 <!-- ===================== CONFIGURATION : modifie ici ===================== -->
 <script>
@@ -287,7 +295,7 @@ var CONFIG = {
 	tagline: "Serveur Roleplay Star Wars · Garry's Mod",
 
 	// lien Discord affiché en bas à droite ("" pour cacher)
-	discord: "discord.gg/tonserveur",
+	discord: "discord.gg/TMY8enPX8r",
 
 	// musique : lien direct vers un .mp3 / .ogg ("" = aucune). Le volume suit celui du jeu.
 	music: "",
@@ -704,7 +712,12 @@ var CONFIG = {
 		text("map", (param("map") || "—").toUpperCase());
 		text("mode", (cfg.gamemodeLabel || "").toUpperCase());
 		text("sid", param("steamid") || "—");
-		if (cfg.discord) { text("discord", "DISCORD · " + cfg.discord.toUpperCase()); }
+		if (cfg.discord) {
+			// le code d'invitation respecte les majuscules : on ne le met pas en capitales
+			text("discord-link", cfg.discord);
+			var d = document.getElementById("discord");
+			if (d) { d.style.display = "block"; d.href = /^https?:/.test(cfg.discord) ? cfg.discord : "https://" + cfg.discord; }
+		}
 
 		var code = ((cfg.serverName || "") + " " + (cfg.serverSub || "")).toUpperCase().replace(/\s+/g, " · ").split("").join(" ");
 		text("code", code);
